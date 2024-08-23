@@ -8,6 +8,14 @@ export default {
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
       },
+      colors: {
+        warpfiend: {
+          DEFAULT: "#6e6e77",
+        },
+        cultured: {
+          DEFAULT: "#f4f4f5",
+        },
+      },
     },
   },
   plugins: [],

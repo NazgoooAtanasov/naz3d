@@ -1,53 +1,73 @@
-import Link from "next/link";
+import Section from "./_components/Section";
+import ContentHolder from "./_components/ContentHolder";
+import Header from "./_components/Header";
+import Button from "./_components/Button";
+import Summary from "./_components/Summary";
+import FileInput from "./_components/FileInput";
+import PreviewCard from "./_components/Card";
 
-import { LatestPost } from "~/app/_components/post";
-import { api, HydrateClient } from "~/trpc/server";
-
-export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
-
-  void api.post.getLatest.prefetch();
-
+export default function Home() {
   return (
-    <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-          </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
+    <main>
+      <Section>
+        <Header
+          head="Unleash Your 3D Printing Creativity"
+          description="Upload your STL files and let our expert 3D printing services bring your designs to life."
+        >
+          <Button type="secondary">Upload STL File</Button>
+        </Header>
+        <ContentHolder>
+          <div className="h-[400px] w-[400px] bg-gray-800"></div>
+        </ContentHolder>
+      </Section>
+      <Section type="secondary">
+        <Header
+          head="The 3D Printing Process"
+          description="Our 3D printing services use the latest technology to bring your designs to life. From file upload to final product, we'll guide you through the entire process."
+          centerTexts={true}
+          headFontSize="normal"
+        />
+        <ContentHolder>
+          <Summary
+            header="Upload STL File"
+            description="Start by uploading your 3D design file in the STL format."
+          />
+          <Summary
+            header="Review and Approve"
+            description="Our team will review your file and provide a quote. Once approved, we'll begin the printing process."
+          />
+          <Summary
+            header="Receive Your Product"
+            description="Your 3D printed product will be shipped to you, ready to use."
+          />
+        </ContentHolder>
+      </Section>
+      <Section type="normal">
+        <Header
+          head="Upload Your STL File"
+          description="Our 3D printing experts will bring your design to life. Upload your STL file and we'll provide a quote."
+        >
+          <FileInput />
+        </Header>
+      </Section>
+      <Section type="normal">
+        <Header
+          head="Preview Your 3D Model"
+          description="Upload your STL file and preview it in 3D before placing your order."
+        >
+          <FileInput />
+        </Header>
+        <ContentHolder>
+          <div className="w-[600px]">
+            <PreviewCard
+              header="3D Model Preview"
+              description="Your uploaded 3D model will be displayed here."
             >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
+              <div></div>
+            </PreviewCard>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello ? hello.greeting : "Loading tRPC query..."}
-            </p>
-          </div>
-
-          <LatestPost />
-        </div>
-      </main>
-    </HydrateClient>
+        </ContentHolder>
+      </Section>
+    </main>
   );
 }
