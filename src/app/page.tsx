@@ -5,6 +5,7 @@ import Button from "./_components/Button";
 import Summary from "./_components/Summary";
 import FileInput from "./_components/FileInput";
 import PreviewCard from "./_components/Card";
+import UploadFileAndGoToOrder from "./_components/UploadAndOrder";
 
 export default function Home() {
   return (
@@ -43,12 +44,7 @@ export default function Home() {
         </ContentHolder>
       </Section>
       <Section type="normal">
-        <Header
-          head="Upload Your STL File"
-          description="Our 3D printing experts will bring your design to life. Upload your STL file and we'll provide a quote."
-        >
-          <FileInput />
-        </Header>
+        <UploadFileAndGoToOrder />
       </Section>
       <Section type="normal">
         <Header

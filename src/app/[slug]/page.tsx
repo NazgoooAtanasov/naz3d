@@ -6,10 +6,16 @@ import Button from "../_components/Button";
 import Select from "../_components/Select";
 import Input from "../_components/Input";
 import PlaceOrderForm from "./PlaceOrderForm";
+import { api } from "~/trpc/server";
 
-export default function Quote() {
+export default async function Quote({ params }: { params: { slug: string } }) {
+  const { orderBeginData, fileUrl } = await api.orders.getBeginOrder(
+    params.slug,
+  );
+  // @TODO: handle the missing order begin data and fileurl
+
   return (
-    <PlaceOrderForm>
+    <PlaceOrderForm orderId={params.slug}>
       <Section type="normal" maxHeight={false}>
         <div className="w-1/2">
           <Header
