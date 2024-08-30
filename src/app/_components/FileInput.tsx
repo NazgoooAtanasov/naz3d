@@ -10,7 +10,9 @@ export default function FileInput({
 }) {
   const [loading, setLoading] = useState(false);
   const [filename, setFileName] = useState("");
-  const { data, isLoading } = api.files.getSignedPutUrl.useQuery(filename);
+  const { data, isLoading } = api.files.getSignedPutUrl.useQuery(filename, {
+    enabled: !!filename,
+  });
 
   const submit = async (form: HTMLFormElement) => {
     const formData = new FormData(form);

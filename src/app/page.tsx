@@ -6,6 +6,7 @@ import Summary from "./_components/Summary";
 import FileInput from "./_components/FileInput";
 import PreviewCard from "./_components/Card";
 import UploadFileAndGoToOrder from "./_components/UploadAndOrder";
+import ModelPreviewer from "./_components/ModelPreviewer";
 
 export default function Home() {
   return (
@@ -47,22 +48,7 @@ export default function Home() {
         <UploadFileAndGoToOrder />
       </Section>
       <Section type="normal">
-        <Header
-          head="Preview Your 3D Model"
-          description="Upload your STL file and preview it in 3D before placing your order."
-        >
-          <FileInput />
-        </Header>
-        <ContentHolder>
-          <div className="w-[600px]">
-            <PreviewCard
-              header="3D Model Preview"
-              description="Your uploaded 3D model will be displayed here."
-            >
-              <div></div>
-            </PreviewCard>
-          </div>
-        </ContentHolder>
+        <ModelPreviewer />
       </Section>
     </main>
   );

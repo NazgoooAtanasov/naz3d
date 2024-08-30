@@ -7,6 +7,7 @@ import Select from "../_components/Select";
 import Input from "../_components/Input";
 import PlaceOrderForm from "./PlaceOrderForm";
 import { api } from "~/trpc/server";
+import { ModelRenderer } from "../_components/ModelPreviewer";
 
 export default async function Quote({ params }: { params: { slug: string } }) {
   const { orderBeginData, fileUrl } = await api.orders.getBeginOrder(
@@ -71,7 +72,7 @@ export default async function Quote({ params }: { params: { slug: string } }) {
         </div>
         <ContentHolder>
           <PreviewCard fullWidth={true} header="Preview your model">
-            <div></div>
+            {fileUrl ? <ModelRenderer fileUrl={fileUrl} /> : <></>}
           </PreviewCard>
           <Card>
             <h2 className="mb-2 text-xl font-bold">Order summary</h2>
