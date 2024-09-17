@@ -7,7 +7,7 @@ export default function Logo({ nameColor = "black" }: { nameColor?: string }) {
         height="100%"
         viewBox="0 0 340.000000 250.000000"
         preserveAspectRatio="xMidYMid meet"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
         style={{ margin: "auto" }}
       >
         <g
@@ -22,8 +22,8 @@ export default function Logo({ nameColor = "black" }: { nameColor?: string }) {
               <g>
                 <rect
                   fill="#333333"
-                  fill-opacity="0"
-                  stroke-width="2"
+                  fillOpacity="0"
+                  strokeWidth="2"
                   x="0"
                   y="0"
                   width="130"
@@ -46,7 +46,7 @@ export default function Logo({ nameColor = "black" }: { nameColor?: string }) {
               </g>
             </g>
             <g transform="translate(0,46.09356498718262)">
-              <g data-gra="path-name" fill-rule="">
+              <g data-gra="path-name" fillRule="">
                 <g transform="scale(1)">
                   <g>
                     <path
@@ -65,8 +65,8 @@ export default function Logo({ nameColor = "black" }: { nameColor?: string }) {
           <g fill="white">
             <g>
               <rect
-                fill-opacity="1"
-                stroke-width="2"
+                fillOpacity="1"
+                strokeWidth="2"
                 x="0"
                 y="0"
                 width="130"
@@ -88,13 +88,13 @@ export default function Logo({ nameColor = "black" }: { nameColor?: string }) {
           <g transform="translate(-4.540000915527344,46.09356498718262)">
             <rect
               fill="black"
-              fill-opacity="1"
+              fillOpacity="1"
               x="-3.5"
               y="-3.5"
               width="146.0800018310547"
               height="36.119998931884766"
             ></rect>
-            <rect fill="black" fill-opacity="1" x="-3.5" y="-3.5"></rect>
+            <rect fill="black" fillOpacity="1" x="-3.5" y="-3.5"></rect>
           </g>
           <g
             transform="translate(-4.540000915527344,46.09356498718262)"

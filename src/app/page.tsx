@@ -8,6 +8,7 @@ import PreviewCard from "./_components/Card";
 import UploadFileAndGoToOrder from "./_components/UploadAndOrder";
 import ModelPreviewer from "./_components/ModelPreviewer";
 import Logo from "./_components/Logo";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,7 +18,12 @@ export default function Home() {
           head="Unleash Your 3D Printing Creativity"
           description="Upload your STL files and let our expert 3D printing services bring your designs to life."
         >
-          <Button type="secondary">Upload STL File</Button>
+          <Link
+            className="inline-block rounded-md bg-white pb-2 pl-8 pr-8 pt-2 text-black"
+            href="#uploadfiles"
+          >
+            Upload STL File
+          </Link>
         </Header>
         <ContentHolder>
           <Logo nameColor="white" />
@@ -45,7 +51,7 @@ export default function Home() {
           />
         </ContentHolder>
       </Section>
-      <Section type="normal">
+      <Section type="normal" id="uploadfiles">
         <UploadFileAndGoToOrder />
       </Section>
       <Section type="normal">
