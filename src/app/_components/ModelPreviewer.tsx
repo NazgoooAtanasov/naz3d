@@ -13,6 +13,8 @@ import { api } from "~/trpc/react";
 export function ModelRenderer({ fileUrl }: { fileUrl: string }) {
   const previewer = useRef<HTMLElement>(null);
   const scene = useMemo(() => new THREE.Scene(), []);
+  const [camera, setCamera] = useState<THREE.PerspectiveCamera>();
+  const [controls, setControls] = useState<TrackballControls>();
 
   useEffect(() => {
     const previewerBox = previewer.current?.getBoundingClientRect();
@@ -22,6 +24,8 @@ export function ModelRenderer({ fileUrl }: { fileUrl: string }) {
       0.1,
       1000,
     );
+    setCamera(camera);
+
     const renderer = new THREE.WebGLRenderer();
     renderer.setClearColor(new THREE.Color(1, 1, 1));
     renderer.setSize(
@@ -31,8 +35,8 @@ export function ModelRenderer({ fileUrl }: { fileUrl: string }) {
     previewer.current?.appendChild(renderer.domElement);
 
     const controls = new TrackballControls(camera, renderer.domElement);
-    camera.position.z = 1;
     controls.update();
+    setControls(controls);
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -49,15 +53,26 @@ export function ModelRenderer({ fileUrl }: { fileUrl: string }) {
 
   useEffect(() => {
     const stlLoader = new STLLoader();
-    let mesh: THREE.Mesh | null = null;
     stlLoader.load(fileUrl, (geometry: THREE.BufferGeometry) => {
       const material = new THREE.MeshNormalMaterial();
-      mesh = new THREE.Mesh(geometry, material);
-      console.log(scene, geometry, mesh);
+      const mesh = new THREE.Mesh(geometry, material);
+      const boundingBox = new THREE.Box3().setFromObject(mesh);
+      const centerOfObject = new THREE.Vector3();
+      boundingBox.getCenter(centerOfObject);
+
       scene?.clear();
       scene?.add(mesh);
+
+      if (camera && controls) {
+        camera.position.set(
+          centerOfObject.x,
+          centerOfObject.y,
+          centerOfObject.z,
+        );
+        controls.update();
+      }
     });
-  }, [fileUrl, scene]);
+  }, [fileUrl, scene, camera, controls]);
 
   return <section className="h-full w-full" ref={previewer}></section>;
 }
