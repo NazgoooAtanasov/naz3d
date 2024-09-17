@@ -7,6 +7,7 @@ import FileInput from "./_components/FileInput";
 import PreviewCard from "./_components/Card";
 import UploadFileAndGoToOrder from "./_components/UploadAndOrder";
 import ModelPreviewer from "./_components/ModelPreviewer";
+import Logo from "./_components/Logo";
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
           <Button type="secondary">Upload STL File</Button>
         </Header>
         <ContentHolder>
-          <div className="h-[400px] w-[400px] bg-gray-800"></div>
+          <Logo nameColor="white" />
         </ContentHolder>
       </Section>
       <Section type="secondary">
